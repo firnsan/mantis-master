@@ -1,0 +1,18 @@
+{
+	"name": "host1",
+    "address": "127.0.0.1:80",
+	"instances": [
+		{
+			"service": "firstApp",
+			"name": "firstApp0001",
+			"path": "",
+			"cmd": "./firstGoWeb"
+		},
+		{
+			"service": "firstApp",
+			"name": "firstApp0001",
+			"path": "",
+			"cmd": "./firstGoWeb"
+		}
+	]
+}
