@@ -8,6 +8,7 @@ import (
 	"errors"
 	"log"
 	"github.com/docopt/docopt-go"
+	"github.com/firnsan/mantis-master/service"
 )
 
 
@@ -75,10 +76,20 @@ Usage:
 	fmt.Println(arguments)
 
 	if arguments["run"].(bool) {
-		hosts, err := parseHost(arguments["<host>"].([]string))
+		m, err := parseHost(arguments["<host>"].([]string))
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(hosts)
+		fmt.Println(m)
+
+		for host, apps := range m {
+			var insts []service.Instance
+			for _, app := range apps {
+				insts = append(insts,
+					service.Instance{Name:app})
+			}
+			service.RunInstances(host, insts)
+		}
 	}
+
 }

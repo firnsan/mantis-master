@@ -1,0 +1,18 @@
+{
+	"name": "host1",
+    "address": "192.168.63.131:8080",
+	"instances": [
+		{
+			"service": "firstGoWeb",
+			"name": "web0001",
+			"path": "/tmp/web0001",
+			"cmd": "./firstGoWeb"
+		},
+		{
+			"service": "firstGoWeb",
+			"name": "web0002",
+			"path": "/tmp/web0002",
+			"cmd": "./firstGoWeb"
+		}
+	]
+}

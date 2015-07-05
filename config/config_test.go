@@ -17,7 +17,7 @@ func TestReadService(t *testing.T) {
 }
 
 func TestReadHost(t *testing.T) {
-	f,err := os.Open("../hosts/host1.json")
+	f,err := os.Open("../hosts_conf/host1.json")
 	if err != nil {
 		fmt.Println(err)
 	}
