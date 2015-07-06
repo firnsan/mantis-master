@@ -1,0 +1,6 @@
+{
+	"name": "firstGoWeb",
+	"git": "git@github.com:firnsan/fisrtGoWeb.git",
+	"buildCmd": "./build.sh",
+	"cmd": "./firstGoWeb"
+}
