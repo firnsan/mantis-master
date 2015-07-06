@@ -17,7 +17,7 @@ type Service struct {
 	Name string `json:"name"`
 	Git string `json:"git"`
 	Path string `json:"path"`
-	Cmd string `json:cmd`
+	Cmd string `json:"cmd""`
 	BuildCmd string `json:"buildCmd"`
 }
 
@@ -91,6 +91,7 @@ func DeployServices(host string, servs []Service) error {
 			continue
 		}
 		serv.Git = servInfo.Git
+		serv.BuildCmd = servInfo.BuildCmd
 		deployService(method, serv)
 	}
 
