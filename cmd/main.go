@@ -66,9 +66,10 @@ func main() {
 	usage := `Mantis Cmd
 
 Usage:
-	mantis_cmd run <host>... [--autoUpdate|--autoBuild]
-	mantis_cmd run <app@host>... [--autoUpdate|--autoBuild]
-	mantis_cmd run <app@host> [--service=<service>|--cmd=<command>|--path=<path>]
+	mantis_cmd run <host>... [--autoUpdate]
+	mantis_cmd run <instance@host>... [--autoUpdate]
+	mantis_cmd run <instance@host> [--service=<service>|--cmd=<command>|--path=<path>]
+	mantis_cmd deploy <service@host>...
 
 `
 
@@ -90,6 +91,27 @@ Usage:
 			}
 			service.RunInstances(host, insts)
 		}
+	}
+	if arguments["deploy"].(bool) {
+		m, err := parseHost(arguments["<service@host>"].([]string))
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(m)
+
+		for host, services := range m {
+			if len(services) == 0 { // 没有指定该host的service
+				log.Println("no services for " + host)
+				continue
+			}
+			var servs []service.Service
+			for _, serv := range services {
+				servs = append(servs,
+					service.Service{Name:serv})
+			}
+			service.DeployServices(host, servs)
+		}
+
 	}
 
 }
